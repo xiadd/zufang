@@ -1,47 +1,29 @@
-**master分支为教程分支,包括文章里的代码**
-**prod为公众号的功能实现分支,请自行切换**
+# doubanzufang
 
-### ATTENTION PLEASE
-注意啊,之前不小心把配置文件也传上去,不要用我的秘钥啊。。。把我的次数都用完了。
+> 豆瓣租房抓取
 
-### shorthand
-shorthand公众号开源，基于node，新手坑慎入
-`npm run dev`执行开发环境
-`npm run build`打包
-`lean up` or `node server.js` 生产环境
+主要用来抓取数据进行测试。
 
-### 不定期更新
+## Build Setup
 
-- [nodejs微信开发---接入指南](https://segmentfault.com/a/1190000005856154)
-- [nodejs微信开发---自动回复的实现](https://segmentfault.com/a/1190000005861026)
-- [nodejs 微信开发 --- 获取access_token+自定义菜单](https://segmentfault.com/a/1190000005906009)
-- [nodejs微信开发---授权登录+获取用户信息](https://segmentfault.com/a/1190000005921102)
-- [nodejs 微信开发 --- jssdk的使用](https://segmentfault.com/a/1190000005958495)
+``` bash
+# install dependencies
+npm install
 
-#### shorthand任务清单
-标注一些shorthand的公众号需要完成的任务
+# serve with hot reload at localhost:8080
+npm run dev
 
-##### 教程部分
-- [x] 完成接入篇
- 
-- [x] 完成简单的机器人聊天（示例，不是主要功能）
+# build for production with minification
+npm run build
 
-- [x] 获取access_token+自定义菜单+授权登录+获取用户信息
+# run unit tests
+npm run unit
 
-- [x] js sdk的使用
+# run e2e tests
+npm run e2e
 
-- [ ] … … 待定
+# run all tests
+npm test
+```
 
-##### 公众号功能
-- [x] 知乎精选（非网页）
-
-- [ ] 微博状态（非网页）
-
-- [ ] 表白墙功能 （？待定是否用得着）
-
-- [ ] rss阅读（网页，是公众号还是网站待定）
-
-- [ ] 草榴抓取🔞🔞🔞？
-
-- [ ] … … 待定
-
+For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
