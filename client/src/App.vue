@@ -2,6 +2,7 @@
   <div id="app">
     <img class="logo" src="assets/logo.png">
     <hello></hello>
+    <douban></douban>
     <p>
       Welcome to your Vue.js app!
     </p>
@@ -24,10 +25,11 @@
 
 <script>
 import Hello from './components/Hello'
+import Douban from './components/Douban'
 
 export default {
   components: {
-    Hello
+    Hello, Douban
   }
 }
 </script>
@@ -53,7 +55,7 @@ body {
 }
 
 #app a {
-  color: rgba(82, 206, 255, 0.74);
+  color: rgba(187, 89, 255, 0.74);
   text-decoration: none;
 }
 

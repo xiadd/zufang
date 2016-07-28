@@ -10,6 +10,10 @@ var bodyParser = require('body-parser');
 var AV = require('leanengine');
 const nunjucks =require('nunjucks');
 
+
+//引入路由
+var apis = require('./routes/apis');
+
 var app = express();
 
 // 设置模板引擎
@@ -30,8 +34,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.get('/demo', function (req, res) {
-  res.send('demo');
-});
+app.use('/api', apis);
 
 module.exports = app;

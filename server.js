@@ -70,7 +70,7 @@ if (isDev) {
   app.use(hotMiddleware);
 
 // serve pure static assets
-  module.exports = app.listen(PORT, function (err) {
+  app.listen(PORT, function (err) {
     if (err) {
       console.log(err);
       return;
