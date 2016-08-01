@@ -51,9 +51,4 @@ function getResults() {
   });
 }
 
-function getData() {
-  //每次当秒为10的时候执行
-  new CronJob('10 * * * * *', getResults, null, true, 'Asia/Shanghai');
-}
-
 module.exports = getResults;

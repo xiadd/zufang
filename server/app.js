@@ -8,7 +8,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var AV = require('leanengine');
-const nunjucks =require('nunjucks');
+var nunjucks =require('nunjucks');
 
 
 //引入路由
@@ -26,7 +26,16 @@ app.use(express.static('public'));
 app.use(timeout('15s'));
 
 // 加载云函数定义
-require('./cloud');
+var cloud = require('./cloud');
+
+AV.Cloud.run('hello', {name: 'test'}, {
+  success: function (data) {
+    console.log(data);
+  },
+  error: function (err) {
+    console.log(err);
+  }
+});
 // 加载云引擎中间件
 app.use(AV.express());
 

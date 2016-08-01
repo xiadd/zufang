@@ -4,15 +4,10 @@
 var router = require('express').Router();
 var doubanData = require('../spiders/douban/douban');
 var CronJob = require('cron').CronJob;
+var getDoubanData = require('../components/douban/index');
 
-router.get('/', function (req, res) {
-  new CronJob('* 30 10,18 * * *', function () {
-    doubanData().then(function (data) {
-      res.json(data);
-    }, function (err) {
-      console.log(err.message);
-    })
-  }, null, true, 'Asia/Beijing', null, true);
+router.get('/', function (req, res, next) {
+  getDoubanData(req, res, next);
 });
 
 module.exports = router;
