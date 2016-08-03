@@ -4,7 +4,6 @@
 var API = require('./api');
 var request = require('request');
 var parseString = require('xml2js').parseString;
-var CronJob = require('cron').CronJob;
 
 var apis = API.groups.map(function (v) {
   return API.baseUrl + v + '/discussion';
@@ -39,7 +38,7 @@ function getResults() {
   };
   return new Promise(function (resolve, reject) {
     request(options, function (err, res, body) {
-      parseString(body, function (err, result) {
+      parseString(body, function (error, result) {
         var data = result['rss']['channel'][0]['item'];
         if (typeof data !== 'object') {
           reject(new TypeError('应该返回json数据'));

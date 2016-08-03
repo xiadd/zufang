@@ -1,30 +1,40 @@
 /**
  * Created by xiadd on 7/28/16.
  */
-var CronJob = require('cron').CronJob;
 var AV = require('leanengine');
 var doubanSpider = require('../../spiders/douban/douban');
 
 var Douban = AV.Object.extend('Douban');
+var detailInfo = AV.Object.extend('bc' + new Date().toLocaleDateString().split('/').reverse().join('_'));
 
 function saveObjectsToDatabase(data) {
   if(data instanceof Array === false) {
     console.warn('data应为数组');
     return;
   }
-  data.forEach(function (v) {
-    var zufangInfo = new Douban();
+
+  var dateInfo = new Douban();
+  var localInfo = data.map(function (v) {
+    var zufangInfo = new detailInfo();
     zufangInfo.set('title', v.title);
     zufangInfo.set('link', v.link);
     zufangInfo.set('description', v.description);
     zufangInfo.set('creator', v['dc:creator']);
     zufangInfo.set('pubDate', v['pubDate']);
-    zufangInfo.save().then(function () {
-      console.log('success');
-    }, function (err) {
-      console.log(err.message)
-    });
+    return zufangInfo;
   });
+
+  AV.Object.saveAll(localInfo).then(function (cloudInfo) {
+    var relation = dateInfo.relation('containedInfo');
+    cloudInfo.forEach(function (v) {
+      relation.add(v);
+    });
+    dateInfo.set('date' ,new Date().toLocaleDateString())
+    dateInfo.save();
+  }, function (err) {
+    console.log(err.message)
+  })
+
 }
 
 function crawDoubanData() {
@@ -32,7 +42,7 @@ function crawDoubanData() {
     doubanSpider().then(function (data) {
       saveObjectsToDatabase(data);
     });
-  }, null, true, 'Asia/Beijing', null, true);
+  }, null, true, 'Asia/Shanghai', null, true);
 }
 
 function dealDoubanData(req, res, next) {
@@ -42,10 +52,13 @@ function dealDoubanData(req, res, next) {
   }
   var query = new AV.Query('Douban');
   query.find().then(function (result) {
-    console.log(result);
-    res.json(result);
-  }, function (err) {
-    console.log(err.message);
+    return result[0]['attributes']['containedInfo']['targetClassName'];
+  }).then(function (data) {
+    var $query = new AV.Query(data);
+    $query.limit(300);
+    return $query.find();
+  }).then(function (data) {
+    res.json(data)
   })
 }
 

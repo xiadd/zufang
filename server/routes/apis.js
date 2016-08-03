@@ -3,7 +3,6 @@
  */
 var router = require('express').Router();
 var doubanData = require('../spiders/douban/douban');
-var CronJob = require('cron').CronJob;
 var getDoubanData = require('../components/douban/index');
 
 router.get('/', function (req, res, next) {

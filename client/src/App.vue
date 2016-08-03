@@ -28,6 +28,8 @@ import Hello from './components/Hello'
 import Douban from './components/Douban'
 
 export default {
+  ready () {
+  },
   components: {
     Hello, Douban
   }

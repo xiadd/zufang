@@ -28,14 +28,6 @@ app.use(timeout('15s'));
 // 加载云函数定义
 var cloud = require('./cloud');
 
-AV.Cloud.run('hello', {name: 'test'}, {
-  success: function (data) {
-    console.log(data);
-  },
-  error: function (err) {
-    console.log(err);
-  }
-});
 // 加载云引擎中间件
 app.use(AV.express());
 
