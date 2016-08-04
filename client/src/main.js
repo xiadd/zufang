@@ -1,15 +1,19 @@
 import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
-import 'vux/dist/vux.css'
+import VueResource from 'vue-resource'
+
+//引入视图
+import Douban from './components/Douban.vue';
 
 Vue.use(VueRouter);
+Vue.use(VueResource);
 
 var router = new VueRouter();
 
 router.map({
   '/demo': {
-    component: {}
+    component: Douban
   }
 });
 

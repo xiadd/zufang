@@ -51,14 +51,9 @@ function dealDoubanData(req, res, next) {
     return;
   }
   var query = new AV.Query('Douban');
-  query.find().then(function (result) {
-    return result[0]['attributes']['containedInfo']['targetClassName'];
-  }).then(function (data) {
-    var $query = new AV.Query(data);
-    $query.limit(300);
-    return $query.find();
-  }).then(function (data) {
-    res.json(data)
+  query.limit(200);
+  query.find().then(function (results) {
+    res.json(results);
   })
 }
 

@@ -33,6 +33,8 @@ function getResults() {
     url: apis[0],
     method: 'get',
     headers: {
+      'Cookie': 'bid=Lk58d1TIJL0',
+      'Connection':'close',
       'User-Agent': 'Paw/2.3.1 (Macintosh; OS X/10.11.6) GCDHTTPRequest'
     }
   };
