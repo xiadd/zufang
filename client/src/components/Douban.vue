@@ -1,7 +1,7 @@
 <template>
   <div>
-    <x-header :left-options="{showBack: false}">豆瓣租房</x-header>
-    <panel header="豆瓣租房信息" :footer="footer" :list="list" :type="type" @on-click-item="toogleShow" style="margin-top: 0"></panel>
+    <x-header :left-options="{showBack: false}" v-demo="123">豆瓣租房</x-header>
+    <panel header="豆瓣租房信息" :footer="footer" :list="list" :type="type" @on-click-item="toggleShow" style="margin-top: 0"></panel>
     <popup :show.sync="showPopup" height="100%">
       <div class="popup">
         <h2>{{detailInfo.title}}</h2>
@@ -28,6 +28,20 @@
     ready () {
       this.getInfoList();
     },
+    props: {
+      size: String,
+      require: true
+    },
+    directives: {
+      demo: {
+        bind () {
+          console.log('done')
+        },
+        update (val) {
+          console.log(val);
+        }
+      }
+    },
     data () {
       return {
         type: '2',
@@ -53,7 +67,7 @@
           this.list = results.data;
         });
       },
-      toogleShow (item) {
+      toggleShow (item) {
         this.detailInfo = {
           title: item.title,
           originLink: item.originLink,
